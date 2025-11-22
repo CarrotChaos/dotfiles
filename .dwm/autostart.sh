@@ -3,5 +3,5 @@ feh --bg-fill /home/user/Pictures/Wallpapers/vadim-sadovski-n7.jpg &
 picom &
 dunst &
 dwmblocks &
-/home/user/dwmblocks-async/audio-listen.sh &
-/home/user/dwmblocks-async/minute-listen.sh &
+~/scripts/statusbar/audio-listen.sh &
+~/scripts/statusbar/minute-listen.sh &
