@@ -1,7 +1,13 @@
 -- init.lua
 require('config.options')      -- General options configuration
 require('config.keybinds')     -- Keybindings configuration
-require('config.lazy')
+
+vim.pack.add({
+	{ src = "https://github.com/Mofiqul/dracula.nvim" },
+
+})
+
+vim.cmd("colorscheme dracula")
 
 vim.cmd [[
 augroup RestoreCursorShapeOnExit
