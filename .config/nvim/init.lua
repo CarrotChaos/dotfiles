@@ -2,13 +2,6 @@
 require('config.options')      -- General options configuration
 require('config.keybinds')     -- Keybindings configuration
 
-vim.pack.add({
-	{ src = "https://github.com/Mofiqul/dracula.nvim" },
-
-})
-
-vim.cmd("colorscheme dracula")
-
 vim.cmd [[
 augroup RestoreCursorShapeOnExit
     autocmd!
