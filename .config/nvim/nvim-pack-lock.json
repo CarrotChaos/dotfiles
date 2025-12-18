@@ -1,0 +1,20 @@
+{
+  "plugins": {
+    "blink.cmp": {
+      "rev": "e72fc4443f2f91e023d0edd168074ba16898e970",
+      "src": "https://github.com/Saghen/blink.cmp"
+    },
+    "dracula.nvim": {
+      "rev": "d9bf36ff8d3a72fcd2a1572902eceefe578ccbf2",
+      "src": "https://github.com/binhtddev/dracula.nvim"
+    },
+    "lualine.nvim": {
+      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
+    "nvim-highlight-colors": {
+      "rev": "e0c4a58ec8c3ca7c92d3ee4eb3bc1dd0f7be317e",
+      "src": "https://github.com/brenoprata10/nvim-highlight-colors"
+    }
+  }
+}

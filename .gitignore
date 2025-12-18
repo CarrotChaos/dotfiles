@@ -1,12 +1,15 @@
 *
 !.gitignore
-!.config/dunst
-!.config/nvim
+
+!.config/
+!.themes/
+!.dwm/
+
+!.config/dunst/
+!.config/nvim/
 !.config/nvim/**
-!.config/picom
-!.config/ranger
+!.config/picom/
+!.config/ranger/
 !.config/starship.toml
-!.themes
-!.dwm
 !.Xresources
 
