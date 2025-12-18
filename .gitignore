@@ -1,15 +1,22 @@
 *
 !.gitignore
 
+# .config and subfolders
 !.config/
-!.themes/
-!.dwm/
-
-!.config/dunst/
 !.config/nvim/
 !.config/nvim/**
+!.config/dunst/
+!.config/dunst/**
 !.config/picom/
+!.config/picom/**
 !.config/ranger/
+!.config/ranger/**
 !.config/starship.toml
+
+# top-level folders
+!.themes/
+!.themes/**
+!.dwm/
+!.dwm/**
 !.Xresources
 
