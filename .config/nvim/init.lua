@@ -1,3 +1,5 @@
+-- Install tree-sitter-cli, pyright, bash-language-server, python-black, shfmt 
+
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.number = true
@@ -29,6 +31,8 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/m4xshen/autoclose.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/romgrk/barbar.nvim" },
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 })
 
 -- language servers
@@ -103,6 +107,11 @@ require("conform").setup({
     lsp_format = "fallback",
   },
 })
+
+--barbar
+require('barbar').setup {
+  auto_hide = true,
+}
 
 -- set the cursor to be line on exit
 vim.cmd [[
