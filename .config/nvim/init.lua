@@ -28,6 +28,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/m4xshen/autoclose.nvim" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
 })
 
 -- language servers
@@ -64,6 +65,7 @@ require("telescope").setup({
   },
 })
 
+-- telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
@@ -88,6 +90,19 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 -- autoclose
 require("autoclose").setup()
+
+-- conform
+require("conform").setup({
+  formatters_by_ft = {
+    python = { "black" },
+ 	sh = { "shfmt" },
+  },
+  format_on_save = {
+    -- These options will be passed to conform.format()
+    timeout_ms = 500,
+    lsp_format = "fallback",
+  },
+})
 
 -- set the cursor to be line on exit
 vim.cmd [[

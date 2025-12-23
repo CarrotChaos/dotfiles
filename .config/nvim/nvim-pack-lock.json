@@ -8,6 +8,10 @@
       "rev": "e72fc4443f2f91e023d0edd168074ba16898e970",
       "src": "https://github.com/Saghen/blink.cmp"
     },
+    "conform.nvim": {
+      "rev": "5420c4b5ea0aeb99c09cfbd4fd0b70d257b44f25",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
     "dracula.nvim": {
       "rev": "d9bf36ff8d3a72fcd2a1572902eceefe578ccbf2",
       "src": "https://github.com/binhtddev/dracula.nvim"
