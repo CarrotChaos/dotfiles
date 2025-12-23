@@ -26,8 +26,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/Saghen/blink.cmp" }, 
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, 
-	{ src = "https://github.com/nvim-telescope/telescope.nvim" }, 
-	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/ibhagwan/fzf-lua" }, 
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/m4xshen/autoclose.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
@@ -59,22 +58,10 @@ require("blink.cmp").setup({
 -- highlight colors
 require('nvim-highlight-colors').setup({})
 
--- telescope setup
-require("telescope").setup({
-  defaults = {
-    sorting_strategy = "ascending",
-    layout_config = {
-      prompt_position = "top",
-    },
-  },
-})
-
--- telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+--fzf-lua
+vim.keymap.set('n', '<leader>ff', function()
+  require('fzf-lua').files({ cwd = '/'})
+end, { noremap = true, silent = true })
 
 -- treesitter
 require("nvim-treesitter").setup({
