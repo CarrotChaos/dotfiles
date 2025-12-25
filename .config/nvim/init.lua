@@ -1,4 +1,4 @@
--- Install tree-sitter-cli, pyright, bash-language-server, python-black, shfmt 
+-- Install tree-sitter-cli, pyright, bash-language-server, python-black, shfmt, fzf 
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
