@@ -11,4 +11,3 @@
 RANGER_LOAD_DEFAULT_RC=false
 export PASSWORD_STORE_TOMB_KEY=/mnt/Ventoy/.password.tomb.key
 export EDITOR=nvim
-eval "$(starship init bash)"

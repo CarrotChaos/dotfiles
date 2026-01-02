@@ -53,6 +53,21 @@ require("blink.cmp").setup({
   fuzzy = {
     implementation = "lua",
   },
+
+  keymap = {
+    preset = 'enter',
+    ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
+    ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
+  },
+
+  completion = {
+    list = {
+      selection = {
+        preselect = false,
+        auto_insert = true,
+      },
+    },
+  },
 })
 
 -- highlight colors
@@ -80,7 +95,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 -- autoclose
-require("autoclose").setup()
+require("autoclose").setup({
+  options = {
+    disable_command_mode = true,
+  },
+})
 
 -- conform
 require("conform").setup({

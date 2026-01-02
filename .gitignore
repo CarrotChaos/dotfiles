@@ -1,6 +1,7 @@
 *
 !.gitignore
 !.bashrc
+!.gtkrc-2.0
 
 # .config and subfolders
 !.config/
@@ -12,6 +13,10 @@
 !.config/picom/**
 !.config/ranger/
 !.config/ranger/**
+!.config/gtk-3.0/
+!.config/gtk-3.0/**
+!.config/gtk-4.0/
+!.config/gtk-4.0/**
 !.config/starship.toml
 
 # top-level folders
@@ -20,4 +25,5 @@
 !.dwm/
 !.dwm/**
 !.Xresources
+
 
