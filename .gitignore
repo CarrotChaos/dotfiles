@@ -2,6 +2,7 @@
 !.gitignore
 !.bashrc
 !.gtkrc-2.0
+!.Xresources
 
 # .config and subfolders
 !.config/
@@ -24,6 +25,3 @@
 !.themes/**
 !.dwm/
 !.dwm/**
-!.Xresources
-
-
