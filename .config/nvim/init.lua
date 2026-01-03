@@ -118,11 +118,3 @@ require("conform").setup({
 require('barbar').setup {
   auto_hide = true,
 }
-
--- set the cursor to be line on exit
-vim.cmd [[
-augroup RestoreCursorShapeOnExit
-    autocmd!
-    autocmd VimLeave * set guicursor=a:ver25-blinkwait700-blinkoff400-blinkon250
-augroup END
-]]
