@@ -32,6 +32,7 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/romgrk/barbar.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
+	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" },
 })
 
 -- language servers
@@ -118,3 +119,9 @@ require("conform").setup({
 require('barbar').setup {
   auto_hide = true,
 }
+
+-- tiny-inline-diagnostic
+require("tiny-inline-diagnostic").setup({
+  preset = "simple",
+})
+
