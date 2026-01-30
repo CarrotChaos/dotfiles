@@ -79,6 +79,15 @@ vim.keymap.set('n', '<leader>ff', function()
   require('fzf-lua').files({ cwd = '/'})
 end, { noremap = true, silent = true })
 
+require('fzf-lua').setup({
+  files = {
+    actions = {
+      ['default'] = require('fzf-lua').actions.file_edit,
+    },
+  },
+})
+
+
 -- treesitter
 require("nvim-treesitter").setup({
   install_dir = vim.fn.stdpath("data") .. "/site",
@@ -110,7 +119,7 @@ require("conform").setup({
   },
   format_on_save = {
     -- These options will be passed to conform.format()
-    timeout_ms = 500,
+    timeout_ms = 2000,
     lsp_format = "fallback",
   },
 })
