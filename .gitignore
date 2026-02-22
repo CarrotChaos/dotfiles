@@ -3,6 +3,7 @@
 !.zshrc
 !.gtkrc-2.0
 !.Xresources
+!.xinitrc
 
 # .config and subfolders
 !.config/
