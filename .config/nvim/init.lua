@@ -1,4 +1,162 @@
--- Install tree-sitter-cli, pyright, bash-language-server, python-black, shfmt, fzf 
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Setup lazy.nvim
+require("lazy").setup({
+  spec = {
+    {
+      "binhtddev/dracula.nvim",
+      config = function()
+        vim.cmd("colorscheme dracula")
+      end,
+    },
+
+    {
+      "nvim-lualine/lualine.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+        require("lualine").setup({
+          options = { theme = "dracula" }
+        })
+      end
+    },
+
+    {
+      "Saghen/blink.cmp",
+      config = function()
+        require("blink.cmp").setup({
+          fuzzy = { implementation = "lua" },
+          keymap = {
+            preset = "enter",
+            ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+            ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+          },
+          completion = {
+            list = {
+              selection = {
+                preselect = false,
+                auto_insert = true,
+              },
+            },
+          },
+        })
+      end
+    },
+
+    {
+      "brenoprata10/nvim-highlight-colors",
+      config = function()
+        require("nvim-highlight-colors").setup({})
+      end
+    },
+
+    {
+      "ibhagwan/fzf-lua",
+      config = function()
+        vim.keymap.set("n", "<leader>ff", function()
+          require("fzf-lua").files({ cwd = "/" })
+        end, { noremap = true, silent = true })
+
+        require("fzf-lua").setup({
+          files = {
+            actions = {
+              ["default"] = require("fzf-lua").actions.file_edit,
+            },
+          },
+        })
+      end
+    },
+
+    {
+      "nvim-treesitter/nvim-treesitter",
+      build = ":TSUpdate",
+      config = function()
+        require("nvim-treesitter").setup({
+          install_dir = vim.fn.stdpath("data") .. "/site",
+        })
+
+        require("nvim-treesitter").install({ "python", "bash" })
+
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = { "python", "bash" },
+          callback = function()
+            vim.treesitter.start()
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.wo.foldmethod = "expr"
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end,
+        })
+      end
+    },
+
+    {
+      "m4xshen/autoclose.nvim",
+      config = function()
+        require("autoclose").setup({
+          options = { disable_command_mode = true },
+        })
+      end
+    },
+
+    {
+      "stevearc/conform.nvim",
+      config = function()
+        require("conform").setup({
+          formatters_by_ft = {
+            python = { "black" },
+            sh = { "shfmt" },
+          },
+          format_on_save = {
+            timeout_ms = 2000,
+            lsp_format = "fallback",
+          },
+        })
+      end
+    },
+
+    {
+      "romgrk/barbar.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+        require("barbar").setup({ auto_hide = true })
+      end
+    },
+
+    {
+      "rachartier/tiny-inline-diagnostic.nvim",
+      config = function()
+        require("tiny-inline-diagnostic").setup({ preset = "simple" })
+      end
+    },
+
+  },
+
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "dracula" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
+})
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -6,131 +164,13 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
-vim.opt.foldenable = true     -- folds active
-vim.opt.foldlevel = 99        -- open all folds by default
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
 
--- Press 'jj' in insert mode to escape
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-v>', '"+P', { noremap = true, silent = true })
 
--- Map Ctrl+c to copy
-vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
-
--- Map Ctrl+v to paste
-vim.api.nvim_set_keymap('n', '<C-v>', '"+P', { noremap = true, silent = true })
-
-vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
-
-vim.pack.add({
-	{ src = "https://github.com/binhtddev/dracula.nvim" },
-	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
-	{ src = "https://github.com/Saghen/blink.cmp" }, 
-	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, 
-	{ src = "https://github.com/ibhagwan/fzf-lua" }, 
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/m4xshen/autoclose.nvim" },
-	{ src = "https://github.com/stevearc/conform.nvim" },
-	{ src = "https://github.com/romgrk/barbar.nvim" },
-	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" },
-})
-
--- language servers
-vim.lsp.enable({"pyright"})
-vim.lsp.enable({"bashls"})
-
--- set colorscheme
-vim.cmd("colorscheme dracula")
-
--- set lualine
-require("lualine").setup({
-    options = {
-        theme = "dracula"
-    }
-})
-
--- setup blink.cmp
-require("blink.cmp").setup({
-  fuzzy = {
-    implementation = "lua",
-  },
-
-  keymap = {
-    preset = 'enter',
-    ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
-    ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-  },
-
-  completion = {
-    list = {
-      selection = {
-        preselect = false,
-        auto_insert = true,
-      },
-    },
-  },
-})
-
--- highlight colors
-require('nvim-highlight-colors').setup({})
-
---fzf-lua
-vim.keymap.set('n', '<leader>ff', function()
-  require('fzf-lua').files({ cwd = '/'})
-end, { noremap = true, silent = true })
-
-require('fzf-lua').setup({
-  files = {
-    actions = {
-      ['default'] = require('fzf-lua').actions.file_edit,
-    },
-  },
-})
-
-
--- treesitter
-require("nvim-treesitter").setup({
-  install_dir = vim.fn.stdpath("data") .. "/site",
-})
-
-require("nvim-treesitter").install({ "python", "bash" })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "python", "bash" },
-  callback = function()
-    vim.treesitter.start()
-    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    vim.wo.foldmethod = "expr"
-    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-  end,
-})
--- autoclose
-require("autoclose").setup({
-  options = {
-    disable_command_mode = true,
-  },
-})
-
--- conform
-require("conform").setup({
-  formatters_by_ft = {
-    python = { "black" },
- 	sh = { "shfmt" },
-  },
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 2000,
-    lsp_format = "fallback",
-  },
-})
-
---barbar
-require('barbar').setup {
-  auto_hide = true,
-}
-
--- tiny-inline-diagnostic
-require("tiny-inline-diagnostic").setup({
-  preset = "simple",
-})
+-- Install tree-sitter-cli, pyright, bash-language-server, python-black, shfmt, fzf 
 

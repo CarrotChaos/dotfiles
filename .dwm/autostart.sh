@@ -5,3 +5,4 @@ picom &
 dunst &
 ~/scripts/statusbar/audio-listen.sh &
 ~/scripts/statusbar/minute-listen.sh &
+~/scripts/statusbar/battery-listen.sh &

@@ -7,6 +7,7 @@ bindkey -v
 autoload -U colors && colors
 export PS1="%{$fg_bold[green]%}%n@%{$reset_color%}%{$fg_bold[cyan]%}%m%{$reset_color%} %{$fg_bold[yellow]%}%~%{$reset_color%} %{$fg_bold[yellow]%}$%{$reset_color%} "
 alias ls='ls --color=auto'
+alias py='$(which python)'
 
 RANGER_LOAD_DEFAULT_RC=false
 export PASSWORD_STORE_TOMB_KEY=/mnt/Ventoy/.password.tomb.key
