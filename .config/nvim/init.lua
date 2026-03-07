@@ -155,7 +155,7 @@ require("lazy").setup({
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "dracula" } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
 })
 
 vim.opt.tabstop = 4
@@ -172,5 +172,8 @@ vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-v>', '"+P', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
--- Install tree-sitter-cli, pyright, bash-language-server, python-black, shfmt, fzf 
 
+-- Install tree-sitter-cli, pyright, bash-language-server, python-black, shfmt, fzf 
+-- language servers
+vim.lsp.enable({"pyright"})
+vim.lsp.enable({"bashls"})
