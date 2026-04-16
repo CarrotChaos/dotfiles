@@ -25,7 +25,7 @@ vim.pack.add({
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/catppuccin/nvim" },
-	{ src = "https://github.com/ellisonleao/gruvbox.nvim" },
+	{ src = "https://github.com/sainnhe/gruvbox-material" },
 	{ src = "https://codeberg.org/andyg/leap.nvim" },
 	{ src = "https://github.com/tpope/vim-sleuth" },
 })
@@ -69,14 +69,29 @@ require("catppuccin").setup({
         solid = false, -- use solid styling for floating windows, see |winborder|
     },
 })
-
--- Default options:
-require("gruvbox").setup({
-  transparent_mode = true,
-})
-
-vim.cmd("colorscheme gruvbox")
+vim.g.gruvbox_material_transparent_background = 2
+vim.cmd.colorscheme('gruvbox-material')
 -- vim.cmd.colorscheme "catppuccin-nvim"
+
+local function make_transparent()
+  local highlights = vim.api.nvim_get_hl(0, {})
+
+  for name, opts in pairs(highlights) do
+    -- target categories
+    if name:match("Normal")
+      or name:match("Float")
+      or name:match("Pmenu")
+      or name:match("Cmp")
+      or name:match("MiniPick")
+    then
+      vim.api.nvim_set_hl(0, name, vim.tbl_extend("force", opts, { bg = "none" }))
+    end
+  end
+  vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#504945", bold = true })
+  vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { bg = "#504945", bold = true })
+end
+
+make_transparent()
 
 -- set lualine
 require("lualine").setup({
@@ -103,6 +118,9 @@ require("blink.cmp").setup({
         preselect = false,
         auto_insert = true,
       },
+    },
+    menu = {
+      scrollbar = true,
     },
   },
 })
@@ -137,7 +155,6 @@ vim.keymap.set("n", "<leader>ff", function()
     },
   })
 end, { desc = "Find files in home (find)" })
-vim.api.nvim_set_hl(0, "MiniPickPrompt", { fg = "#fabd2f", bold = true })
 
 -- highlight colors
 require('nvim-highlight-colors').setup({})
@@ -326,4 +343,3 @@ require("tiny-inline-diagnostic").setup({
 
 -- leap.nvim
 require('leap.user').set_backdrop_highlight('Comment')
-
