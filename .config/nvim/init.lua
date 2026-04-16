@@ -16,10 +16,10 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
-	{ src = "https://github.com/Saghen/blink.cmp" }, 
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, 
 	{ src = "https://github.com/nvim-mini/mini.pick" }, 
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/saghen/blink.cmp" },
 	{ src = "https://github.com/romgrk/barbar.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" },
@@ -85,29 +85,6 @@ require("lualine").setup({
     }
 })
 
--- mini.pick
-local pick = require("mini.pick")
-
-require("mini.pick").setup({
-  mappings = {
-    move_down = "<C-j>",
-    move_up = "<C-k>",
-  },
-})
-vim.ui.select = pick.ui_select
-
-vim.keymap.set("n", "<leader>ff", function()
-  pick.start({
-    source = {
-      name = "Files (~)",
-      items = vim.fn.systemlist([[
-        find ~ -type f 2>/dev/null
-      ]]),
-    },
-  })
-end, { desc = "Find files in home (find)" })
-
-
 -- setup blink.cmp
 require("blink.cmp").setup({
   fuzzy = {
@@ -129,6 +106,38 @@ require("blink.cmp").setup({
     },
   },
 })
+
+-- mini.pick
+local pick = require("mini.pick")
+
+pick.setup({
+  mappings = {
+    move_down = "<C-j>",
+    move_up = "<C-k>",
+  },
+
+  source = {
+    -- This enables icons for file-like items
+    show = function(buf_id, items, query, opts)
+      opts = vim.tbl_extend("force", opts or {}, {
+        show_icons = true,
+      })
+      pick.default_show(buf_id, items, query, opts)
+    end,
+  },
+})
+
+vim.ui.select = pick.ui_select
+
+vim.keymap.set("n", "<leader>ff", function()
+  pick.start({
+    source = {
+      name = " Files (~)",
+      items = vim.fn.systemlist("find ~ -type f 2>/dev/null")
+    },
+  })
+end, { desc = "Find files in home (find)" })
+vim.api.nvim_set_hl(0, "MiniPickPrompt", { fg = "#fabd2f", bold = true })
 
 -- highlight colors
 require('nvim-highlight-colors').setup({})
