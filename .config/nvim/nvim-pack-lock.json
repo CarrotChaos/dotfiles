@@ -1,9 +1,5 @@
 {
   "plugins": {
-    "barbar.nvim": {
-      "rev": "539d73def39c9172b4d4d769f14090e08f37b29d",
-      "src": "https://github.com/romgrk/barbar.nvim"
-    },
     "blink.cmp": {
       "rev": "c573a15a62bd0bfd4006ee0849b24f5404395500",
       "src": "https://github.com/saghen/blink.cmp"
@@ -12,9 +8,13 @@
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
     },
-    "gruvbox-material": {
-      "rev": "11d779b26a9ab2b3db8c22c6ac9fb6e8ed4fea79",
-      "src": "https://github.com/sainnhe/gruvbox-material"
+    "gruvbox-material.nvim": {
+      "rev": "b1e6f194bcec3e839f2ae47d61cb9e08d522734e",
+      "src": "https://github.com/f4z3r/gruvbox-material.nvim"
+    },
+    "gruvbox.nvim": {
+      "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
+      "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "leap.nvim": {
       "rev": "b960d5038c5c505c52e56a54490f9bbb1f0e6ef6",
