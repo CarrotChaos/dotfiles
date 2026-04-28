@@ -8,7 +8,6 @@ fpath=(/usr/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 autoload -U colors && colors
-export PS1="%{$fg_bold[green]%}%n@%{$reset_color%}%{$fg_bold[cyan]%}%m%{$reset_color%} %{$fg_bold[yellow]%}%~%{$reset_color%} %{$fg_bold[yellow]%}$%{$reset_color%} "
 alias ls='ls --color=auto'
 
 RANGER_LOAD_DEFAULT_RC=false
@@ -20,3 +19,5 @@ source "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.zsh"
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+eval "$(starship init zsh)"
+

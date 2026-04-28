@@ -17,17 +17,16 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, 
-	{ src = "https://github.com/nvim-mini/mini.pick" }, 
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/saghen/blink.cmp" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/catppuccin/nvim" },
-	{ src = "https://github.com/ellisonleao/gruvbox.nvim" },
 	{ src = "https://github.com/f4z3r/gruvbox-material.nvim" },
 	{ src = "https://codeberg.org/andyg/leap.nvim" },
 	{ src = "https://github.com/tpope/vim-sleuth" },
+	{ src = "https://github.com/sainnhe/sonokai" },
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -66,25 +65,16 @@ require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     transparent_background = true, -- disables setting the background color.
     float = {
-        transparent = true, -- enable transparent floating windows
+        transparent = false, -- enable transparent floating windows
         solid = false, -- use solid styling for floating windows, see |winborder|
     },
 })
 
--- Default options:
-require("gruvbox").setup({
-  transparent_mode = true,
-})
-
--- values shown are defaults and will be used if not provided
-require('gruvbox-material').setup({
-  background = {
-    transparent = true,      -- set the background to be opaque
-  },
-})
-
-vim.cmd("colorscheme gruvbox")
--- vim.cmd("colorscheme gruvbox-material")
+vim.opt.termguicolors = true
+vim.g.sonokai_transparent_background = 1
+vim.g.sonokai_enable_italic = true
+vim.g.sonokai_style = 'default'
+vim.cmd.colorscheme('sonokai')
 -- vim.cmd.colorscheme "catppuccin-nvim"
 
 -- set lualine
@@ -115,37 +105,6 @@ require("blink.cmp").setup({
     },
   },
 })
-
--- mini.pick
-local pick = require("mini.pick")
-
-pick.setup({
-  mappings = {
-    move_down = "<C-j>",
-    move_up = "<C-k>",
-  },
-
-  source = {
-    -- This enables icons for file-like items
-    show = function(buf_id, items, query, opts)
-      opts = vim.tbl_extend("force", opts or {}, {
-        show_icons = true,
-      })
-      pick.default_show(buf_id, items, query, opts)
-    end,
-  },
-})
-
-vim.ui.select = pick.ui_select
-
-vim.keymap.set("n", "<leader>ff", function()
-  pick.start({
-    source = {
-      name = " Files (~)",
-      items = vim.fn.systemlist("find ~ -type f 2>/dev/null")
-    },
-  })
-end, { desc = "Find files in home (find)" })
 
 -- highlight colors
 require('nvim-highlight-colors').setup({})
@@ -178,18 +137,3 @@ require("tiny-inline-diagnostic").setup({
 
 -- leap.nvim
 require('leap.user').set_backdrop_highlight('Comment')
-
-local function set_highlights()
-  if vim.g.colors_name == "gruvbox" then
-    vim.api.nvim_set_hl(0, "MiniPickPrompt", { fg = "#fabd2f", bold = true }) -- yellow
-  elseif vim.g.colors_name == "gruvbox-material" then
-    vim.api.nvim_set_hl(0, "MiniPickPrompt", { fg = "#d8a657", bold = true }) -- softer material yellow
-  end
-end
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-  callback = set_highlights,
-})
-
--- run once for current theme
-set_highlights()
