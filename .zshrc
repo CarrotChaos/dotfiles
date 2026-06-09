@@ -14,7 +14,7 @@ RANGER_LOAD_DEFAULT_RC=false
 export PASSWORD_STORE_TOMB_KEY=/mnt/Ventoy/.password.tomb.key
 export EDITOR=nvim
 source "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.zsh"
-
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes

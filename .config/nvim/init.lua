@@ -18,15 +18,16 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, 
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/saghen/blink.cmp" },
+	{ src = "https://github.com/saghen/blink.cmp",
+	  version = 'v1',
+	},
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/catppuccin/nvim" },
-	{ src = "https://github.com/f4z3r/gruvbox-material.nvim" },
 	{ src = "https://codeberg.org/andyg/leap.nvim" },
 	{ src = "https://github.com/tpope/vim-sleuth" },
-	{ src = "https://github.com/sainnhe/sonokai" },
+	{ src = "https://github.com/jpwol/thorn.nvim" },
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -57,7 +58,7 @@ vim.lsp.enable({"bashls"})
 vim.lsp.enable({"clangd"})
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'c', 'python', 'bash' },
+  pattern = { 'c', 'python', 'bash', "javascript" },
   callback = function() vim.treesitter.start() end,
 })
 
@@ -70,12 +71,8 @@ require("catppuccin").setup({
     },
 })
 
-vim.opt.termguicolors = true
-vim.g.sonokai_transparent_background = 1
-vim.g.sonokai_enable_italic = true
-vim.g.sonokai_style = 'default'
-vim.cmd.colorscheme('sonokai')
--- vim.cmd.colorscheme "catppuccin-nvim"
+-- setup must be called before loading
+vim.cmd.colorscheme "catppuccin-nvim"
 
 -- set lualine
 require("lualine").setup({
@@ -110,7 +107,7 @@ require("blink.cmp").setup({
 require('nvim-highlight-colors').setup({})
 
 -- treesitter
-require("nvim-treesitter").install({ "python", "bash", "lua" })
+require("nvim-treesitter").install({ "python", "bash", "lua", "javascript" })
 
 -- custom autopairs
 require("autopair").setup()
