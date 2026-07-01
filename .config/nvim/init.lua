@@ -27,7 +27,6 @@ vim.pack.add({
 	{ src = "https://github.com/catppuccin/nvim" },
 	{ src = "https://codeberg.org/andyg/leap.nvim" },
 	{ src = "https://github.com/tpope/vim-sleuth" },
-	{ src = "https://github.com/jpwol/thorn.nvim" },
 })
 
 vim.api.nvim_create_autocmd("FileType", {
