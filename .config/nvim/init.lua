@@ -15,9 +15,9 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.pack.add({
+	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" }, 
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, 
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/saghen/blink.cmp",
 	  version = 'v1',
 	},
@@ -51,15 +51,12 @@ vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
 vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
 vim.keymap.set('n', '<leader>bb', ':buffers<CR>', { noremap = true, silent = true })
 
+require("tree-sitter-manager").setup()
+
 -- language servers
 vim.lsp.enable({"pyright"})
 vim.lsp.enable({"bashls"})
 vim.lsp.enable({"clangd"})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'c', 'python', 'bash', "javascript" },
-  callback = function() vim.treesitter.start() end,
-})
 
 require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -104,9 +101,6 @@ require("blink.cmp").setup({
 
 -- highlight colors
 require('nvim-highlight-colors').setup({})
-
--- treesitter
-require("nvim-treesitter").install({ "python", "bash", "lua", "javascript" })
 
 -- custom autopairs
 require("autopair").setup()

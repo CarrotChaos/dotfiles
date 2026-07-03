@@ -1,12 +1,10 @@
-/usr/bin/pipewire &
-/usr/bin/pipewire-pulse &
-/usr/bin/wireplumber &
-/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+/usr/libexec/polkit-mate-authentication-agent-1 &
 [ -f ~/.cache/brightness_level ] && brightnessctl set "$(cat ~/.cache/brightness_level)" &
-xwallpaper --zoom ~/Pictures/Wallpapers/abstract-swirls.jpg
+xwallpaper --zoom ~/Pictures/Wallpapers/horizon.jpg
 picom &
 dunst &
 redshift &
+gentoo-pipewire-launcher &
 dwmblocks &
 ~/scripts/statusbar/audio-listen.sh &
 ~/scripts/statusbar/minute-listen.sh &
