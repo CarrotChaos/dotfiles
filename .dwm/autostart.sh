@@ -9,3 +9,4 @@ dwmblocks &
 ~/scripts/statusbar/audio-listen.sh &
 ~/scripts/statusbar/minute-listen.sh &
 ~/scripts/statusbar/battery-listen.sh &
+python3 ~/.local/bin/pass-daemon.py &
