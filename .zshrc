@@ -11,10 +11,15 @@ autoload -U colors && colors
 alias ls='ls --color=auto'
 
 RANGER_LOAD_DEFAULT_RC=false
-export PASSWORD_STORE_TOMB_KEY=/mnt/Ventoy/.password.tomb.key
+# export PASSWORD_STORE_TOMB_KEY=/mnt/Ventoy/.password.tomb.key
+# export PASSWORD_STORE_TOMB_KEY=~/.password.tomb.key
 export EDITOR=nvim
 source "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.zsh"
 # export PATH="$PATH:$(go env GOPATH)/bin"
+alias genpass='python3 ~/scripts/genpass.py'
+alias gentotp='python3 ~/scripts/mintotp.py'
+alias unlock='timeout 3600 gocryptfs ~/passwords-crypt/ ~/passwords/'
+alias close='fusermount3 -u ~/passwords'
 
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes
