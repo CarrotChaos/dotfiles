@@ -16,12 +16,12 @@ RANGER_LOAD_DEFAULT_RC=false
 export EDITOR=nvim
 source "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.zsh"
 # export PATH="$PATH:$(go env GOPATH)/bin"
-alias sudo='doas'
-alias sudoedit='doasedit'
+alias sudo='rdo'
+alias sudoedit='rdoedit'
 alias genpass='python3 ~/scripts/genpass.py'
 alias gentotp='python3 ~/scripts/mintotp.py'
-alias unlock='~/scripts/open-passwords.sh'
-alias lock='~/scripts/close-passwords.sh'
+alias open='~/scripts/open-passwords.sh'
+alias close='~/scripts/close-passwords.sh'
 
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes
