@@ -16,8 +16,8 @@ RANGER_LOAD_DEFAULT_RC=false
 export EDITOR=nvim
 source "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.zsh"
 # export PATH="$PATH:$(go env GOPATH)/bin"
-alias sudo='rdo'
-alias sudoedit='rdoedit'
+alias sudo='doas'
+alias sudoedit='doasedit'
 alias genpass='python3 ~/scripts/genpass.py'
 alias gentotp='python3 ~/scripts/mintotp.py'
 alias open='~/scripts/open-passwords.sh'
