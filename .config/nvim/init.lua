@@ -29,12 +29,13 @@ vim.pack.add({
 	{ src = "https://github.com/tpope/vim-sleuth" },
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "text", "gitcommit" },
-  callback = function()
-    vim.opt_local.spell = true
-  end,
+vim.cmd.colorscheme "catppuccin-nvim"
+require("catppuccin").setup({
+    transparent_background = true, -- disables setting the background color.
 })
+
+-- setup must be called before loading
+vim.cmd.colorscheme "catppuccin-nvim"
 
 -- Press 'jj' in insert mode to escape
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
@@ -57,18 +58,6 @@ require("tree-sitter-manager").setup()
 vim.lsp.enable({"pyright"})
 vim.lsp.enable({"bashls"})
 vim.lsp.enable({"clangd"})
-
-require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    transparent_background = true, -- disables setting the background color.
-    float = {
-        transparent = false, -- enable transparent floating windows
-        solid = false, -- use solid styling for floating windows, see |winborder|
-    },
-})
-
--- setup must be called before loading
-vim.cmd.colorscheme "catppuccin-nvim"
 
 -- set lualine
 require("lualine").setup({

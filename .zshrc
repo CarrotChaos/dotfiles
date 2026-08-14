@@ -9,22 +9,23 @@ autoload -Uz compinit
 compinit
 autoload -U colors && colors
 alias ls='ls --color=auto'
+export PS1="%{$fg_bold[green]%}%n@%{$reset_color%}%{$fg_bold[magenta]%}%m%{$reset_color%} %{$fg_bold[yellow]%}%~%{$reset_color%} %{$fg_bold[yellow]%}$%{$reset_color%} "
 
 RANGER_LOAD_DEFAULT_RC=false
 # export PASSWORD_STORE_TOMB_KEY=/mnt/Ventoy/.password.tomb.key
 # export PASSWORD_STORE_TOMB_KEY=~/.password.tomb.key
 export EDITOR=nvim
 source "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.zsh"
+export PATH="$HOME/.cargo/bin:$PATH"
 # export PATH="$PATH:$(go env GOPATH)/bin"
 alias sudo='doas'
 alias sudoedit='doasedit'
-alias genpass='python3 ~/scripts/genpass.py'
-alias gentotp='python3 ~/scripts/mintotp.py'
-alias open='~/scripts/open-passwords.sh'
-alias close='~/scripts/close-passwords.sh'
+alias decrypt='~/scripts/decrypt.sh'
+alias encrypt='~/scripts/encrypt.sh'
+alias start-vm='~/scripts/start-vm.sh'
+alias stop-vm='~/scripts/stop-vm.sh'
+alias theme='~/scripts/theme.sh'
 
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
-eval "$(starship init zsh)"
-
