@@ -24,7 +24,8 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/rachartier/tiny-inline-diagnostic.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
-	{ src = "https://github.com/catppuccin/nvim" },
+	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" }, 
+	{ src = "https://github.com/ellisonleao/gruvbox.nvim" }, 
 	{ src = "https://codeberg.org/andyg/leap.nvim" },
 	{ src = "https://github.com/tpope/vim-sleuth" },
 })
@@ -33,9 +34,14 @@ vim.cmd.colorscheme "catppuccin-nvim"
 require("catppuccin").setup({
     transparent_background = true, -- disables setting the background color.
 })
-
--- setup must be called before loading
 vim.cmd.colorscheme "catppuccin-nvim"
+
+--[[
+require("gruvbox").setup({
+  transparent_mode = true,
+})
+vim.cmd.colorscheme("gruvbox")
+]]
 
 -- Press 'jj' in insert mode to escape
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
