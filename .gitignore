@@ -1,6 +1,6 @@
 *
 !.gitignore
-!.zshrc
+!.bashrc
 !.Xresources
 
 # .config and subfolders
