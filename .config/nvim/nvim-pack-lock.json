@@ -18,7 +18,7 @@
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "leap.nvim": {
-      "rev": "5db34d1a302ef18bc819dc8a38011abe29dae229",
+      "rev": "32bde2e932417e8a065f039f00f0cebdd0da4710",
       "src": "https://codeberg.org/andyg/leap.nvim"
     },
     "lualine.nvim": {
@@ -29,16 +29,12 @@
       "rev": "e4c7af0211866162d999ce0bdd6a029302e19139",
       "src": "https://github.com/brenoprata10/nvim-highlight-colors"
     },
-    "nvim-web-devicons": {
-      "rev": "2ae6958df7ced50baac5035cec0c15799eedfbf7",
-      "src": "https://github.com/nvim-tree/nvim-web-devicons"
-    },
     "tiny-inline-diagnostic.nvim": {
       "rev": "6264451f14119d63a52580e5198d6baf8518b0b2",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "023590c8f068788a0513a4409bf37ff7f9d1deff",
+      "rev": "c59cb96f62db1c41830c2bb6c32fa72ffd701105",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-sleuth": {

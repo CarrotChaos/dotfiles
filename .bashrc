@@ -28,13 +28,16 @@ bind -m vi '"\C-l": clear-screen'
 alias ls='ls --color=auto'
 alias sudo='doas'
 alias sudoedit='doasedit'
-alias decrypt='~/scripts/decrypt.sh'
-alias encrypt='~/scripts/encrypt.sh'
 alias start-vm='~/scripts/start-vm.sh'
 alias stop-vm='~/scripts/stop-vm.sh'
-alias theme='~/scripts/theme.sh'
+alias theme='python ~/scripts/wallpaper_colors.py'
+alias dwl='dbus-run-session dwl -s ~/scripts/dwl-session.sh'
 
 export EDITOR=nvim
 export RANGER_LOAD_DEFAULT_RC=false
 
-PS1='\[\e[1;32m\]\u@\[\e[1;35m\]\h\[\e[0m\] \[\e[1;33m\]\w\[\e[0m\] \[\e[1;33m\]\$\[\e[0m\] '
+# Starship-ish Bash prompt
+PS1='\[\e[1;36m\]\w ❯\[\e[0m\] '
+
+# Add a blank line before each new prompt
+PROMPT_COMMAND='printf "\n"'
