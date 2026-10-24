@@ -1,7 +1,9 @@
 *
 !.gitignore
 !.bashrc
+!.bash_history
 !.Xresources
+!.xinitrc
 
 # .config and subfolders
 !.config/

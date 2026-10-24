@@ -5,7 +5,6 @@
 # that can't tolerate any output.  So make sure this doesn't display
 # anything or bad things will happen !
 
-
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
@@ -16,6 +15,8 @@ fi
 
 
 # Put your fun stuff here.
+source ~/scripts/pass-completion.bash
+
 set -o vi
 bind -m vi-insert '"jj": vi-movement-mode'
 bind 'set show-mode-in-prompt on'
@@ -28,13 +29,9 @@ bind -m vi '"\C-l": clear-screen'
 alias ls='ls --color=auto'
 alias sudo='doas'
 alias sudoedit='doasedit'
+alias pass='~/scripts/pass'
 alias start-vm='~/scripts/start-vm.sh'
 alias stop-vm='~/scripts/stop-vm.sh'
-alias theme='python ~/scripts/wallpaper_colors.py'
-alias dwl='dbus-run-session dwl -s ~/scripts/dwl-session.sh'
-
-export EDITOR=nvim
-export RANGER_LOAD_DEFAULT_RC=false
 
 # Starship-ish Bash prompt
 PS1='\[\e[1;36m\]\w ❯\[\e[0m\] '
