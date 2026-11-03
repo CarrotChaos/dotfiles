@@ -44,7 +44,7 @@ fi
 
 ~/scripts/statusbar/audio-listen.sh &
 ~/scripts/statusbar/minute-listen.sh &
-xwallpaper --zoom ~/Pictures/Wallpapers/wallhaven-1kjp71-catppuccin-mocha.jpg &
+xwallpaper --zoom ~/Pictures/Wallpapers/wallhaven-gw1em3-catppuccin-mocha.jpg
 redshift -l 53.55:-113.49 &
 fastcompmgr &
 dwmblocks &
